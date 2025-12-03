@@ -1,0 +1,688 @@
+syntax = "proto3";
+option csharp_namespace = "Google.Protobuf.GS";
+
+//三维向量
+message Vector3{
+	float x=1;
+	float y=2;
+	float z=3;
+}
+
+//物体配置
+message GameObjectConfig
+{
+    string p=1;//路径 实例ID
+    bool a=2;//激活 - 隐藏 (有必要改为int)
+    Vector3 v=3;//当前位置
+    Vector3 e=4;//当前角度 
+    //public Vector3 scale;
+}
+
+//触发器保存的数据
+message TriggerItem
+{
+	string p=1;//path 路径
+	bool t=2;//isTrigger 是否触发器
+	bool a=3;//activeSelf 激活 - 隐藏 (有必要改为int)
+
+    string i=4;//id 触发器ID 可能因为完成条件后进行修改
+    int32 c=5;//completeCount 已完成次数
+
+     Vector3 v=6;//position
+     Vector3 e=7;//eulerAngles
+
+     bool saveState=8;//是否已执行过存档(存档标识位)
+
+     float lastCompleteTime=9;//上次完成的时间
+}
+
+
+//任务点保存的数据
+message TaskPointItem
+{
+	string id=1;//id
+     bool saveState=2;//是否已执行过存档
+
+     GameObjectConfig oconfig=3;//物体配置
+}
+
+//属性
+message	UnitAttributeEntity{
+		int32 ID=1;//ID
+		int32 Type=2;//分组
+		int32 Lv=3;//等级
+		float attack=4;//攻击力
+		float breaking=5;//破防
+		float hp=6;//血量
+		float defense=7;//防御
+		float attack_speed=8;//攻速
+		float resume=9;//回血
+		float ice_atk=10;//寒冰攻击
+		float flame_atk=11;//火焰攻击
+		float lightning_atk=12;//雷电攻击
+		float toxic_atk=13;//毒素攻击
+		float ice_resistance=14;//寒冰抗性
+		float flame_resistance=15;//火焰抗性
+		float lightning_resistance=16;//雷电抗性
+		float toxic_resistance=17;//毒素抗性
+		float fear_resistance=18;//恐惧抗性
+		float physical_resistance=19;//物理抗性
+		float hit_rate=20;//命中率
+		float evade=21;//闪避率
+		float critical_hit_rate=22;//暴击率
+		float critical_hit_ratio=23;//暴击伤害
+		float increase_injury=24;//增伤
+		float injury_reduction=25;//减伤
+		float upgrade_exp=26;//升级经验
+		float production_exp=27;//击杀产出经验
+		int32 skill_point32s=28;//技能点
+		// int32 attack_int32ensity=29;//攻击强度值
+		// int32 breaking_strength=30;//击开强度值
+		// float repulsion_duration=31;//击退时长
+		// repeated float repulsion_distance=32;//击退距离
+		// float knock_down_duration=33;//击倒时长
+		// repeated float knock_down_distance=34;//击倒距离
+		// float breaking_duration=35;//击飞时长
+		// repeated float striking_distance=36;//击飞距离
+		// repeated float striking_direction=37;//击开方向
+		// int32 heterogeneous_level=38;//霸体级别值
+		// int32 resistance_level=39;//抗击级别值
+		int32 block_probability=40;//前格挡率
+		int32 back_block_probability=41;//后格挡率
+		int32 dodge_probability=42;//躲闪率
+		int32 counterattack_probability=43;//反击率
+		int32 Power=44;//体力初始值
+		int32 MaxPower=45;//体力最大值
+		float StartTime=46;//保持X秒没有消耗体力后，开始恢复体力
+		float AddPowerSpeed=47;//每隔多少秒恢复体力
+		int32 AddPowerNum=48;//恢复体力数量
+		float Anger=49;//怒气初始值
+		float MaxAnger=50;//怒气最大值
+		float StartReduceAngerTime=51;//当X秒后没有造成伤害，开始慢慢消减
+		float ReduceAngerTime=52;//消减时间
+		float ReduceAngerNum=53;//消减数量
+		float QTENum=54;//处决敌人额外增加怒气值
+		float KillNum=55;//击杀敌人增加的怒气值
+		int32 executionTotal=56;//处决最大值
+		int32 executionCutDown=57;//处决衰减值
+		float anger_recovery_percent=58;//怒气回复百分比加成
+		float anger_reduce=59;//怒气下降百分比加成
+		float stamina_recovery=60;//体力回复百分比加成
+		float move_speed_ex=61;//移动速度加成
+		float speed=62;//最大速度
+		float run_speed=63;//疾驰速度
+		float steering_speed=64;//转向速度
+		float MaxElement=65;//元素积累槽
+		float StartReduceElementTime=66;//当X秒后没有造成伤害，开始慢慢消减
+		float ReduceElementTime=67;//元素积累槽消减时间
+		float ReduceElementNum=68;//元素积累槽消减数量
+		float p_ex=69;//主角获得经验加成
+		float h_ex=70;//战马获得经验加成
+		float t_ex=71;//伙伴获得经验加成
+		float coin_ex=72;//铜钱获得加成
+		float skillcd=73;//技能急速
+		float pierce_through_def=74;//透防概率
+		float breaking_pro=75;//破防比例
+		float breaking_1=76;//破兵
+		float breaking_2=77;//破酋
+		float breaking_3=78;//破帅
+		float small_damage=79;//轻甲伤害
+		float middle_damage=80;//中甲伤害
+		float big_damage=81;//重甲伤害
+		float fixed_reduction=82;//固定减伤
+		float physics_reduction=83;//物理减伤
+		float anti_riot=84;//抗暴几率
+		float crit_reduction=85;//暴击减伤
+		float def_1=86;//防兵
+		float def_2=87;//防酋
+		float def_3=88;//防帅
+		float dur_equ=89;//耐久
+		int32 CDR=90;//技能急速
+        float sp_trigger_add=91;//增加爆伤概率
+        float SA_StartReduceAngerTime=92;//怒气爆发状态下:当X秒后没有造成伤害，开始慢慢消减
+		float SA_ReduceAngerTime=93;//怒气爆发状态下:消减间隔时间
+		float SA_ReduceAngerNum=94;//怒气爆发状态下:消减数量
+}
+
+//同伴跟随配置
+message TeamFollowConfig{
+	bool dofollow =1;	
+	int32 attackType=2;
+	string be_follow_unit=3;
+	bool avoidCombat=4;
+	string bubbleText =5;
+	bool isAlwaysFollow =6;
+	 bool onTimeLineFollow=7;
+	 bool isJump=8;
+}
+
+//AI数据
+message AIData{
+	int32 cs=1;//当前状态
+	TeamFollowConfig tc=2;//跟随配置
+	UnitAttributeEntity ac=3;//当前的战斗属性
+    UnitAttributeEntity ao=4;//总属性
+	 string n=5;//name
+     bool y=6;//是否已初始化
+     string uid=7;//单位ID
+     int32 l=8;//等级
+     //string g=9;//群组ID
+     int32 c=10;//阵营
+     bool di =11;//禁用指令输入
+     map<int32, float> st=12;//状态触发时间记录
+     map<int32, float> scd=13;
+     Vector3 sp=14;//出生位置
+     Vector3 sr=15;//出生角度
+     Vector3 lp=16;//离开战斗前的位置
+     int32 md =17;//当前模式
+	 bool c_n=18;//是否npc customid
+     repeated Vector3 escortPoint=19;//护送路线
+
+    float r_t=20;//复活的时间点 0不需要复活 
+    float w_t=21;//暂停计时的时间点
+
+    bool ed=22;//是否已执行死亡事件 executedDieEvent
+    bool opd=23;//攻击模式是否执行超过追击范围的检测
+
+    map<int32,BuffItem> buff=24;//NPC拥有的buff
+
+}
+
+//场景配置
+message	GC_Scene{
+	map<string,TriggerItem> triggerDct=1;//触发器
+	map<string,GameObjectConfig> npcDct=2;//npc
+	map<string,GameObjectConfig> gatePointDct=3;//传送点
+	map<string,TaskPointItem> taskPointDct=4;//任务点
+	map<string, AIData> npcStateDct=5;//npc状态
+    map<string, Chest> chestDct=6;//宝箱状态
+    map<int32, DropEntity> dropDct=7;//掉落物
+    map<string,AnmObj> anmObj=8;//机关控制的物体 需要保存动画状态
+    map<string,PhyObj> PhyObj=9;//物理机关
+    map<string,HitObj> HitObj=10;//需要存档的破碎物状态
+    map<string,GroupAIInfo> GroupAIInfo=11;//群组AI状态
+    map<string, BrokenItem> brokenDic = 12;//物品可否破碎修改记录
+    map<string, EffectAlphaState> effectDic = 13;//特效是否显示
+    map<string, bool> wallDic = 14;//墙体存档
+}
+
+message BrokenItem{
+    string id = 1;
+    int32 isBroken = 2;
+}
+
+message EffectAlphaState{
+    string id = 1;
+    bool isAlpha = 2;
+}
+
+message Chest{
+    string id=1;
+    bool isOpen=2;
+    string ChsetID = 3;
+}
+
+message DropEntity
+{
+    Vector3 pos = 1;
+    string id = 2;
+    int32 Level = 3;
+    int32 Length = 4;
+}
+
+message GC_Main{
+
+	float time=1;
+	PlayerFSMData player=2;
+	int32 saveType=3;
+	Vector3 playerPos=4;
+	UserData userData=5;
+
+ 	TaskCache taskCache=6;//任务
+    SkillCache skillCache=7;//技能
+    WareHouse wareHouse=8;//仓库
+    QuickGrid quickGrid=9;//道具快捷栏
+
+    map<int32, HorseEntity> horse_dct = 10;//已拥有的战马列表
+
+    map<string, TeamInfo> teamInfo =11;//跟随的队友
+    map<string, bool> cameraExcelPoint =12;//相机应用场景表位置字段的记录
+    map<string, int32> gPoint = 13;  //缓存ArcQte分数
+    int32 horse_pId=14;//战马当前唯一ID
+	map<string,ObjState> activeObjet=15;//跨场景激活物体
+
+    map<int32, BuffItem> _buffLst =16;   //buff相关
+    map<string, BuffItemValue> _unitBuff =17;
+
+    int32 weaponState=18;//赵云武器状态
+    map<string,KillGroupInfo> KillGroupInfos = 19;//已击杀的怪物群组
+    StageCache stageCache = 20;
+    int32  buffGlobalId=21;//buff
+    map<string,bool> GlobalChest=22;//全局共享状态的宝箱
+    map<string,int32> Teamlevel=23;//伙伴等级
+    int32 pecentlyHorse = 24;//最近使用的战马 唯一id
+    BgmInfo bgmInfo  = 25;
+    map<string,int32> ghelper=26;//新手引导记录
+    string  NOWscene=27;//当前所处场景
+    map<string,SceneChest> sceneChest=28;//场景宝箱记录
+}
+
+message SceneChest{
+    map<string, Chest> chestDct=1;//宝箱状态
+}
+
+message BgmInfo
+{
+  string path = 1;
+  bool loop = 2;
+  float volume = 3;
+}
+
+
+message KillGroupInfo{
+    repeated string id=1;
+}
+
+message ObjState{
+	map	<string,int32> obj=1;
+}
+
+message BuffItemValue{
+	map<int32,BuffItem> buff=1;
+}
+
+
+//主角保存的数据
+message PlayerFSMData{
+	float currentExp=1;//经验
+	int32 level=2;//等级
+	Vector3 position=3;//位置
+	Vector3 eulerAngles=4;//角度
+	int32 crnState=5;//当前状态
+	map<int32,float> stateUseTime=6;//技能冷却
+	map<string,int32> killRecord=7;//击杀记录
+	UnitAttributeEntity unitAttributeEntity_current=8;//当前属性
+	UnitAttributeEntity unitAttributeEntity_org=9;//总属性
+	string LockGameObject=10;//锁定的单位ID
+	int32 camp=11;//阵营
+	Horse_Data Horse_Data=12;//当前战马配置
+    map<int32,BuffItem> buff=13;//主角拥有的buff
+}
+
+message	UserData{
+    int32 UUID = 1;
+    map<int32, BagItem> Bag=2;
+    int32 AddGridCount = 3;
+    map<string, PlotData> PlotData=4;
+    string CurrentPlot = 5;
+    int32  MaxFihgtTeammateCount =6;
+    map<string, RoleEquipment> RoleEquipment=7;
+    map<string, Shop> ShopData=8;
+    int64 Money = 9;
+    bool IsDefault = 10;
+    bool IsUnLockAtk = 11;
+    map<string, BagItem> quickSaveDic=12;
+    map<int32, bool> systemEnable=13;
+    map<string, bool> ChestDct=14;
+    map<int32, SettingData> SettingDct=15;
+    map<string, HorseShop> HorseShopDct=16;
+    map<string,NpcFriendship> NpcFriendship = 17;
+    map<string, int32> ActiveBigMaps = 18;
+    map<int32,int32> AddAttributes = 19;
+    map<string,Replacement> Replacement = 20;
+    map<string,Pet> Pet = 21;
+    repeated string activeHanQue = 22;
+    int32 difficulty = 23;
+    bool isTeleport = 24;
+    bool isUnLockSkill5 = 25;
+    map<int32, ComposedInfo> typeDic = 26;
+}
+
+message ComposedInfo{
+    repeated int32 composedId = 1;
+}
+
+message	BagItem{
+    int32 ID = 1;
+    string ItemID = 2;
+    int64 GetTime = 3;
+    int32 Number = 4;
+    Equipment equipment = 5;
+    Prop prop = 6;
+}
+message	Equipment{
+    string ItemID = 1;
+    int32 Level = 2;
+    float Durability =3;
+    repeated string AllAttributes = 4;
+    repeated string RuneAttributes = 5;
+    repeated EquipmentBuff BuffAry = 6;
+    int32 Number = 7;
+}
+message	Prop{
+    string ItemID = 1;
+    int32 UseNum = 2;
+    int32 numOfUse =3;
+    int64 useTime =4;
+}
+message	EquipmentBuff{
+    int32 buffID = 1;
+    int32 buff_p_id = 2;
+    int32 state = 3;
+}
+message	PlotData{
+    string PlotID = 1;
+    bool IsComplete = 2;
+}
+message	RoleEquipment{
+    string RoleID = 1;
+    repeated Equipment equipment = 2;
+}
+message	Shop{
+    string ShopID = 1;
+    repeated DropData DropData = 2;
+    repeated DropData SellData = 3;
+    int64 LastTime = 4;
+    int32 CurTime = 5;
+}
+message	DropData{
+    int32 dropChildID = 1;
+    int32 dropID = 2;
+    int32 Length = 3;
+    BagItem bagItem = 4;
+    int32  ItemType = 5;
+    string  Task_prop_ID = 6;
+    int32  Task_Drop_lv = 7;
+}
+message SettingData
+{
+    int32 ID = 1;
+    int32 TypeNum = 2;
+    int32 TypeNum1 = 3;
+    float PercentageNum = 4;
+    repeated int32 option_num = 5;
+}
+message HorseShop
+{
+    string ShopID = 1;
+    repeated HorseEntity BackData = 2;
+    int64 LastTime = 3;
+    int32 CurTime = 4;
+    map<int32,string> BuyPid = 5;
+    map<int32,HorseShopTalent> TalentDct = 6;
+}
+message HorseShopTalent
+{
+    map<int32,WarhorseTalentObject> Talent = 1;
+}
+message NpcFriendship
+{
+    string ID = 1;
+    int32 Friendship = 2;
+    map<string,bool> LikeItemUnlock = 3;
+    map<string,bool> TokenItemUnlock = 4;
+    int32 MaxCount = 5;
+    int64 LastTime = 6;
+}
+message Replacement
+{
+    string ID = 1;
+    bool Unlock = 2;
+    bool IsDefault = 3;
+}
+message Pet
+{
+    string PetID = 1;
+    bool IsUnLock = 2;
+}
+
+message	TaskCache
+{
+    TaskCacheLevel receiveTask = 1;
+    TaskCacheLevel completeTask = 2;
+    repeated TaskInfo receiveTaskLst = 3;
+    bool isTrack = 4;
+    TaskInfo currentTask = 5;
+    bool isClearance = 6;
+    repeated string task_iconDic = 7;
+}
+
+message TaskCacheLevel
+{
+    map<int32,TaskCacheGroup> level_item = 1;
+}
+
+message TaskCacheGroup
+{
+    map<int32,TaskCacheItem> group_item = 1;
+}
+
+message TaskCacheItem
+{
+    map<string,TaskInfo> task_item = 1;
+}
+
+message TaskInfo
+{
+    int32 t_type = 1;//0主线 1支线
+    string taskId = 2;
+    float beginTime = 3;//开始的时间
+    repeated string chatId = 4;//和这个任务有关的对话
+    bool isInvalid = 5;//是否失效
+    int32 state = 6;//0未接受 1.已领取未完成 2.已完成待交付 3.已交付完成
+    int32 resetCount = 7;//已重置次数
+    bool isTrack = 8;//是否被追踪状态
+    map<string, int32> killUnitCountOrg = 9;
+    map<string, int32> killUnitCount = 10;
+    map<string, int32> useItem = 11;
+    repeated string killEnemyGroup = 12;
+    repeated string point = 13;
+    repeated string finishKillList = 14;     //完成击杀数量的怪
+    string unitDieId = 15;
+    repeated int32 timeList = 16;
+    bool isTrue = 17;
+    repeated string escort=18;//已护送到达终点的单位
+    repeated string orderTriggerList = 19;//按顺序触发的触发器
+    map<string, int32> deathDic = 20;//判断npc全部死亡时用的
+}
+
+message SkillCache
+{
+    map<int32, SkillTabInfo> SSI = 1;//已学技能
+    map<int32, bool> skillIsLock = 2;//是否解锁字典
+    int32 points = 3;//待使用技能点数
+    map<string, SkillTabInfo> qiangSkillTabDic = 4;          //技能界面枪系技能栏内的技能
+    map<string, SkillTabInfo> gongSkillTabDic = 5;          //技能界面弓系技能栏内的技能
+    map<string, SkillTabInfo> qiangMaSkillTabDic = 6;              //技能界面枪马系技能栏内的技能
+    map<string, SkillTabInfo> gongMaSkillTabDic = 7;              //技能界面弓马系技能栏内的技能
+    map<string, SkillTabInfo> jianSkillTabDic = 8;              //技能界面剑系技能栏内的技能
+    map<string, SkillTabInfo> jianMaSkillTabDic = 9;              //技能界面剑马系技能栏内的技能
+    int32 mainViewType = 10;            //战斗界面技能栏类型
+}
+
+message SkillTabInfo
+{
+    int32 Id = 1;                //初始id
+    int32 NowSkillId = 2;    //当前技能id
+    string Icon = 3;         //对应图片名称
+    int32 Level = 4;             //当前技能等级
+    int32 index = 5;        //技能栏角标
+}
+
+message	 WareHouse
+{
+    int32 UUID = 1;//唯一标识符
+    map<int32, BagItem> wareHouseDic = 2;//仓库
+}
+
+message QuickGrid
+{
+    map<string, BagItem> quickGridDic = 1;
+}
+
+message HorseEntity
+{
+    int32 id = 1;//全局ID
+    string unitId = 2;//id
+    int32 state = 3;//0休息 1出战 2被召唤(跟随) 3重伤
+    int64 getTime = 4;//获得时间
+    int64 deathTime = 5;//死亡时间
+    int32 currentExp = 6;//当前经验
+    int32 level = 7;//当前等级
+    bool isReturnBlood = 8;//是否正在自动回血
+    UnitAttributeEntity warhorseAttribute_org = 9;//战马总属性
+    UnitAttributeEntity warhorseAttribute_current = 10;//战马当前属性
+    map<int32, WarhorseTalentObject> talentDct = 11;
+    repeated Equipment HorseEqu = 12;     //战马装备
+    bool IsNewHorse = 13;//红点
+    bool isFllow = 14;//是否带在身上的马
+}
+
+message WarhorseTalentObject
+{
+    int32 pid = 1;//唯一ID
+    string id = 2;//天赋ID
+    int32 index = 3;//天赋栏位置
+    int32 state = 4;//0空  1有  2被锁住  3附属
+    repeated int32 pidList = 5;//相同天赋集合，第一个是该天赋第一栏
+}
+
+message BuffItem
+{
+    int32 p_id = 1;//唯一id
+    int32 buff_id = 2;//buffid
+
+    string unitId = 3;//所属的(唯一)单位ID
+    bool isActive = 4;//是否生效中 true false。。。
+
+    float begin = 5;//buff第一次开始的时间
+    float lastTrigger = 6; //上次触发时间
+    float duration_max = 7;//总的持续时长
+    float multiple = 8;//收益倍数,层数
+    int32 state=9;//buff当前状态 0:等待生效 1:生效 2:失效 
+    int32 sourceType=10;//来源类型:0通用 1装备 类似标签的概念,用于批操作
+}
+
+message TeamInfo{
+	string id=1;//ID
+	int32 level=2;//等级
+	bool IsTeam=3;//是否同伴 这里用于区分普通NPC或者同伴
+	int32 Intimacy = 4;//亲密度
+	int32 DieNum = 5;//死亡次数
+	int32 attackType = 6;//0.主动攻击 1.被动防守
+    int32 state=7;// 0:休战 1:出战 2:重伤死亡 3:取消跟随(暂时无法出战)
+	int64 longHitTime = 8;//
+    UnitAttributeEntity att_org=9;//总属性
+    UnitAttributeEntity att_crn=10;//当前属性
+    bool alwaysFollow = 11;//总是跟随
+    bool forceFollowCmd = 12;
+    string stayScene=13;   //该同伴,停留在了哪个场景.
+	CustomTransform inSceneRecord = 14;
+	string unitId=15;//单位ID
+    int32 md = 16;//当前处于什么模式
+
+    map<int32, bool> SkillInfo = 17;//技能解锁状态
+    bool islockhp=18;//是否锁血状态
+    float BloodLockNum=19;//锁血值
+    float exp=20;//经验
+    string avatar=21;//当前套装
+    Vector3 pos=22;//跟随状态下:存档时的位置
+    Vector3 rot=23;//跟随状态下:存档时的角度
+    bool active=24;//跟随状态下:是否激活状态
+}
+
+message CustomTransform
+{
+   Vector3 pos=1;
+   Vector3 rot=2;
+   Vector3 scale=3;
+   bool active=4;
+}
+
+
+message Horse_Data {
+    int32 id=1;//全局唯一ID
+    int32 state=2;//状态
+    Vector3 pos=3;//位置
+    Vector3 rot=4;//角度
+}
+
+//动画机关
+message AnmObj{
+    string id=1;//唯一物体ID
+    string state=2;//当前触发的动画
+    bool a=3;//激活 - 隐藏 
+}
+
+//物理机关
+message PhyObj{
+    string id=1;
+    Vector3 pos=2;
+    Vector3 rot=3;
+    bool a=4;
+}
+
+//破碎物
+message HitObj{
+    string id=1;
+    bool a=2;
+}
+
+
+//群组巡逻
+message GroupAIInfo{
+    string id=1;//id
+    int32 state=2;//状态  0未激活 1移动中 2战斗中 3解散 4巡逻待机
+    string captain=3;//队长ID
+    GroupItemInfo captainGroupItemInfo=4;
+    map <string,GroupItemInfo> team=5;//队员ID
+
+}
+
+message GroupItemInfo{
+    float angle=1;//偏移向量
+    float dst=2;//偏移距离
+}
+
+message StageCache
+{
+    map <string, bool> openRelationNPC = 1;//已入场NPC   npdId, 是否入场中
+    map <int32, StageLetter> letterDic = 2;//信箱集合   信唯一id, 内容
+    map <int32, StageLetter> waitLetterDic = 3;//正在等待计时结束发送的信件   信唯一id, 内容
+    repeated string leaveLetterList = 4;//已发送的退场信件   角色信件表id
+    map <string, int32> leaveLetterDic = 5;//已退场npc集合  已退场npc  退场后送信次数
+    int32 letterUUID = 6;//信件唯一id
+}
+
+//信件
+message StageLetter
+{
+    string id = 1;//npcId;
+    int64 day = 2;//日期
+    string content = 3;//信件内容
+    string sealId = 4;//信物Id
+    string contentSign = 5;//信件签名图片
+    bool isLook = 6;//信物是否已领取
+    bool isRead = 7;//是否已读
+}
+
+//游戏版本
+message GameVersion{
+    string url=1;//屏幕截图
+    string scene_id=2;//场景ID
+    int64 id=4;//id
+    int32 playerLevel=5;//主角等级
+    string title=6;//称谓
+    repeated string task_level=7;//章节
+	int64 time=8;//时间戳
+    int32 v_type=9;//存档类型 0自动挡 1手动挡
+    int32 t_type=10;//触发类型
+    int32 difficulty=11;//难度
+}
+
+message Versions
+{
+    int64 crnId=1;
+    map <int64, GameVersion> dct =2;
+}
+
