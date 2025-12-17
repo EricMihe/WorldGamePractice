@@ -34,11 +34,11 @@ public class SceneMgr : BaseManager<SceneMgr>
         while (!ao.isDone)
         {
             //可以在这里利用事件中心 每一帧将进度发送给想要得到的地方
-            EventCenter.Instance.EventTrigger<float>(E_EventType.E_SceneLoadChange, ao.progress);
+            EventCenter.Instance.EventTrigger<float>(E_EventName.E_SceneLoadChange, ao.progress);
             yield return 0;
         }
         //避免最后一帧直接结束了 没有同步1出去
-        EventCenter.Instance.EventTrigger<float>(E_EventType.E_SceneLoadChange, 1);
+        EventCenter.Instance.EventTrigger<float>(E_EventName.E_SceneLoadChange, 1);
 
         callBack?.Invoke();
         callBack = null;

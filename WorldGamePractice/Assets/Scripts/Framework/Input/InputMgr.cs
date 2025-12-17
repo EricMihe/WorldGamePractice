@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class InputMgr : BaseManager<InputMgr>
 {
-    private Dictionary<E_EventType, InputInfo> inputDic = new Dictionary<E_EventType, InputInfo>();
+    private Dictionary<E_EventName, InputInfo> inputDic = new Dictionary<E_EventName, InputInfo>();
 
     //当前遍历时取出的输入信息
     private InputInfo nowInputInfo;
@@ -37,7 +37,7 @@ public class InputMgr : BaseManager<InputMgr>
     /// </summary>
     /// <param name="key"></param>
     /// <param name="inputType"></param>
-    public void ChangeKeyboardInfo(E_EventType eventType, KeyCode key, InputInfo.E_InputType inputType)
+    public void ChangeKeyboardInfo(E_EventName eventType, KeyCode key, InputInfo.E_InputType inputType)
     {
         //初始化
         if(!inputDic.ContainsKey(eventType))
@@ -59,7 +59,7 @@ public class InputMgr : BaseManager<InputMgr>
     /// <param name="eventType"></param>
     /// <param name="mouseID"></param>
     /// <param name="inputType"></param>
-    public void ChangeMouseInfo(E_EventType eventType, int mouseID, InputInfo.E_InputType inputType)
+    public void ChangeMouseInfo(E_EventName eventType, int mouseID, InputInfo.E_InputType inputType)
     {
         //初始化
         if (!inputDic.ContainsKey(eventType))
@@ -79,7 +79,7 @@ public class InputMgr : BaseManager<InputMgr>
     /// 移除指定行为的输入监听
     /// </summary>
     /// <param name="eventType"></param>
-    public void RemoveInputInfo(E_EventType eventType)
+    public void RemoveInputInfo(E_EventName eventType)
     {
         if (inputDic.ContainsKey(eventType))
             inputDic.Remove(eventType);
@@ -147,7 +147,7 @@ public class InputMgr : BaseManager<InputMgr>
         if (!isStart)
             return;
 
-        foreach (E_EventType eventType in inputDic.Keys)
+        foreach (E_EventName eventType in inputDic.Keys)
         {
             nowInputInfo = inputDic[eventType];
             //如果是键盘输入
@@ -195,8 +195,8 @@ public class InputMgr : BaseManager<InputMgr>
             }
         }
 
-        EventCenter.Instance.EventTrigger(E_EventType.E_Input_Horizontal, Input.GetAxis("Horizontal"));
-        EventCenter.Instance.EventTrigger(E_EventType.E_Input_Vertical, Input.GetAxis("Vertical"));
+        EventCenter.Instance.EventTrigger(E_EventName.E_Input_Horizontal, Input.GetAxis("Horizontal"));
+        EventCenter.Instance.EventTrigger(E_EventName.E_Input_Vertical, Input.GetAxis("Vertical"));
     }
 
 }

@@ -213,25 +213,6 @@ public class PoolMgr : BaseManager<PoolMgr>
         }
 
         #endregion
-
-
-        #region 没有加入 上限时的逻辑
-        ////有抽屉 并且 抽屉里 有对象 才去直接拿
-        //if (poolDic.ContainsKey(name) && poolDic[name].Count > 0)
-        //{
-        //    //弹出栈中的对象 直接返回给外部使用
-        //    obj = poolDic[name].Pop();
-        //}
-        ////否则，就应该去创造
-        //else
-        //{
-        //    //没有的时候 通过资源加载 去实例化出一个GameObject
-        //    obj = GameObject.Instantiate(Resources.Load<GameObject>(name));
-        //    //避免实例化出来的对象 默认会在名字后面加一个(Clone)
-        //    //我们重命名过后 方便往里面放
-        //    obj.name = name;
-        //}
-        #endregion
         return obj;
     }
 
@@ -240,7 +221,7 @@ public class PoolMgr : BaseManager<PoolMgr>
     /// </summary>
     /// <typeparam name="T">数据类型</typeparam>
     /// <returns></returns>
-    public T GetObj<T>(string nameSpace = "") where T:class,IPoolObject,new()
+    public T GetObj<T>(string nameSpace = "") where T: class, IPoolObject,new()
     {
         //池子的名字 是根据类的类型来决定的 就是它的类名
         string poolName = nameSpace + "_" + typeof(T).Name;
@@ -277,38 +258,8 @@ public class PoolMgr : BaseManager<PoolMgr>
     /// <param name="name">抽屉（对象）的名字</param>
     /// <param name="obj">希望放入的对象</param>
     public void PushObj(GameObject obj)
-    {
-        #region 因为失活 父子关系都放入了 抽屉对象中处理 所以不需要再处理这些内容了
-        ////总之，目的就是要把对象隐藏起来
-        ////并不是直接移除对象 而是将对象失活 一会儿再用 用的时候再激活它
-        ////除了这种方式，还可以把对象放倒屏幕外看不见的地方
-        //obj.SetActive(false);
-
-        ////把失活的对象（要放入抽屉中的对象） 父对象先设置为 柜子（缓存池）根对象
-        //obj.transform.SetParent(poolObj.transform);
-        #endregion
-
-        //没有抽屉 创建抽屉
-        //if (!poolDic.ContainsKey(obj.name))
-        //    poolDic.Add(obj.name, new PoolData(poolObj, obj.name));
-
-        //往抽屉当中放对象
+    {     
         poolDic[obj.name].Push(obj);
-
-        ////如果存在对应的抽屉容器 直接放
-        //if(poolDic.ContainsKey(name))
-        //{
-        //    //往栈（抽屉）中放入对象
-        //    poolDic[name].Push(obj);
-        //}
-        ////否则 需要先创建抽屉 再放
-        //else
-        //{
-        //    //先创建抽屉
-        //    poolDic.Add(name, new Stack<GameObject>());
-        //    //再往抽屉里面放
-        //    poolDic[name].Push(obj);
-        //}
     }
 
     /// <summary>
@@ -319,9 +270,19 @@ public class PoolMgr : BaseManager<PoolMgr>
     {
         //如果想要压入null对象 是不被允许的
         if (obj == null)
-            return;
+            return;        
         //池子的名字 是根据类的类型来决定的 就是它的类名
         string poolName = nameSpace + "_" + typeof(T).Name;
+        var ids = typeof(T).GetGenericArguments();
+        if(ids.Length > 0)
+        {
+            poolName += ":";
+            foreach (var id in ids)
+            {
+                poolName += id.ToString() + ",";
+            }
+        }
+        
         //有池子
         PoolObject<T> pool;
         if (poolObjectDic.ContainsKey(poolName))
@@ -334,7 +295,10 @@ public class PoolMgr : BaseManager<PoolMgr>
         }
         //在放入池子中之前 先重置对象的数据
         obj.ResetInfo();
-        pool.poolObjs.Enqueue(obj);
+        if (obj != null)
+        {
+            pool.poolObjs.Enqueue(obj);
+        }   
     }
 
     /// <summary>
