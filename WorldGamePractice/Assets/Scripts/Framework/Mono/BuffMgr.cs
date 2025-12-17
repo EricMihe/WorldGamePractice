@@ -625,7 +625,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
     private VariableManager<Vector2> vector2Manager = new VariableManager<Vector2>();
     private VariableManager<Vector3> vector3Manager = new VariableManager<Vector3>();
 
-    public void AddVariable<T>(string id, T initialValue=default(T))
+    public void AddValue<T>(string id, T initialValue=default(T))
     {
         if (typeof(T) == typeof(int))
         {

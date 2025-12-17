@@ -6,48 +6,25 @@ public class VariableBuffExample : MonoBehaviour
 {
     float speed;
     Vector3 currenttransform;
-    private void Start()
-    {
-
-
-        //// 示例1：使用整数变量
-        //ExampleIntVariables();
-
-        //// 示例2：使用浮点数变量
-        //ExampleFloatVariables();
-
-        //// 示例3：使用Vector3变量
-        //ExampleVector3Variables();
-
-        //// 示例4：展示不同效果曲线
-        //ExampleEffectCurves();
-
-        //// 示例5：展示不同堆叠类型
-        //ExampleStackTypes();
-
-        StartCoroutine(enumerator());
-
-        BuffMgr.Instance.AddVariable<float>("a", 0);
-        BuffMgr.Instance.AddVariable<Vector3>("a", Vector3 .zero );
-
-    }
-
     IEnumerator enumerator()
     {
         while (true)
         {
-            yield return new WaitForSeconds (0.5f);
+            yield return new WaitForSeconds(0.5f);
             Debug.Log($"{BuffMgr.Instance.GetValue<float>("a")}");
             Debug.Log($"{BuffMgr.Instance.GetValue<Vector3>("a")}");
         }
     }
-
-
-    private void CheckAfterBuff()
+    private void Start()
     {
+        StartCoroutine(enumerator());
+
+        BuffMgr.Instance.AddValue("a", 0);
+        BuffMgr.Instance.AddValue("a", Vector3 .zero );
 
     }
 
+    
 
     private void Update()
     {
