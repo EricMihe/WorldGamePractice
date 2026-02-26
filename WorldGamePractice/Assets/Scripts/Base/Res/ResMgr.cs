@@ -277,7 +277,6 @@ public class ResMgr : BaseManager<ResMgr>
                 //为了保险起见 一定要让资源移除了
                 //改变表示 待删除
                 //resInfo.isDel = true;
-                //当异步加载不想使用时 我们应该移除它的回调记录 而不是直接去卸载资源
                 if (callBack != null)
                     resInfo.callBack -= callBack;
 
@@ -312,7 +311,6 @@ public class ResMgr : BaseManager<ResMgr>
                 //为了保险起见 一定要让资源移除了
                 //改变表示 待删除
                 //resInfo.isDel = true;
-                //当异步加载不想使用时 我们应该移除它的回调记录 而不是直接去卸载资源
                 if (callBack != null)
                     resInfo.callBack -= callBack;
             }
@@ -330,8 +328,6 @@ public class ResMgr : BaseManager<ResMgr>
 
     private IEnumerator ReallyUnloadUnusedAssets(UnityAction callBack)
     {
-        //就是在真正移除不使用的资源之前 应该把我们自己记录的那些引用计数为0 并且没有被移除记录的资源
-        //移除掉
         List<string> list = new List<string>();
         foreach (string path in resDic.Keys)
         {
@@ -345,7 +341,6 @@ public class ResMgr : BaseManager<ResMgr>
 
         AsyncOperation ao = Resources.UnloadUnusedAssets();
         yield return ao;
-        //卸载完毕后 通知外部
         callBack();
     }
 

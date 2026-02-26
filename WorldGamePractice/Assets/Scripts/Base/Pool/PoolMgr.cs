@@ -46,7 +46,6 @@ public class PoolData
         }
 
         //创建抽屉时 外部肯定是会动态创建一个对象的
-        //我们应该将其记录到 使用中的对象容器中
         PushUsedList(usedObj);
 
         PoolObj poolObj = usedObj.GetComponent<PoolObj>();
@@ -81,7 +80,6 @@ public class PoolData
             obj = usedList[0];
             //并且把它从使用着的对象中移除
             usedList.RemoveAt(0);
-            //由于它还要拿出去用，所以我们应该把它又记录到 使用中的容器中去 
             //并且添加到尾部 表示 比较新的开始
             usedList.Add(obj);
         }

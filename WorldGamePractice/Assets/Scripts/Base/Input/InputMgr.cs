@@ -112,7 +112,6 @@ public class InputMgr : BaseManager<InputMgr>
             if (Input.anyKeyDown)
             {
                 InputInfo inputInfo = null;
-                //我们需要去遍历监听所有键位的按下 来得到对应输入的信息
                 //键盘
                 Array keyCodes = Enum.GetValues(typeof(KeyCode));
                 foreach (KeyCode inputKey in keyCodes)

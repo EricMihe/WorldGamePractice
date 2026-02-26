@@ -171,7 +171,6 @@ public class ABMgr : SingletonAutoMono<ABMgr>
     {
         StartCoroutine(ReallyLoadResAsync<T>(abName, resName, callBack, isSync));
     }
-    //正儿八经的 协程函数
     private IEnumerator ReallyLoadResAsync<T>(string abName, string resName, UnityAction<T> callBack, bool isSync) where T : Object
     {
         //加载主包
@@ -200,14 +199,10 @@ public class ABMgr : SingletonAutoMono<ABMgr>
                     abDic[strs[i]] = req.assetBundle;
                 }
             }
-            //就证明 字典中已经记录了一个AB包相关信息了
             else
             {
-                //如果字典中记录的信息是null 那就证明正在加载中
-                //我们只需要等待它加载结束 就可以继续执行后面的代码了
                 while (abDic[strs[i]] == null)
                 {
-                    //只要发现正在加载中 就不停的等待一帧 下一帧再进行判断
                     yield return 0;
                 }
             }
@@ -233,8 +228,6 @@ public class ABMgr : SingletonAutoMono<ABMgr>
         }
         else
         {
-            //如果字典中记录的信息是null 那就证明正在加载中
-            //我们只需要等待它加载结束 就可以继续执行后面的代码了
             while (abDic[abName] == null)
             {
                 //只要发现正在加载中 就不停的等待一帧 下一帧再进行判断
@@ -299,11 +292,8 @@ public class ABMgr : SingletonAutoMono<ABMgr>
                     abDic[strs[i]] = req.assetBundle;
                 }
             }
-            //就证明 字典中已经记录了一个AB包相关信息了
             else
             {
-                //如果字典中记录的信息是null 那就证明正在加载中
-                //我们只需要等待它加载结束 就可以继续执行后面的代码了
                 while (abDic[strs[i]] == null)
                 {
                     //只要发现正在加载中 就不停的等待一帧 下一帧再进行判断
@@ -332,11 +322,8 @@ public class ABMgr : SingletonAutoMono<ABMgr>
         }
         else
         {
-            //如果字典中记录的信息是null 那就证明正在加载中
-            //我们只需要等待它加载结束 就可以继续执行后面的代码了
             while (abDic[abName] == null)
             {
-                //只要发现正在加载中 就不停的等待一帧 下一帧再进行判断
                 yield return 0;
             }
         }
@@ -399,8 +386,6 @@ public class ABMgr : SingletonAutoMono<ABMgr>
             //就证明 字典中已经记录了一个AB包相关信息了
             else
             {
-                //如果字典中记录的信息是null 那就证明正在加载中
-                //我们只需要等待它加载结束 就可以继续执行后面的代码了
                 while (abDic[strs[i]] == null)
                 {
                     //只要发现正在加载中 就不停的等待一帧 下一帧再进行判断
@@ -429,8 +414,6 @@ public class ABMgr : SingletonAutoMono<ABMgr>
         }
         else
         {
-            //如果字典中记录的信息是null 那就证明正在加载中
-            //我们只需要等待它加载结束 就可以继续执行后面的代码了
             while (abDic[abName] == null)
             {
                 //只要发现正在加载中 就不停的等待一帧 下一帧再进行判断
