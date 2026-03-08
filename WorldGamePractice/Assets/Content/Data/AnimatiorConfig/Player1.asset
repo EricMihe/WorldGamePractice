@@ -1,0 +1,592 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28bc3f35bbf99804fafc960a3c84e6ce, type: 3}
+  m_Name: Player1
+  m_EditorClassIdentifier: 
+  states:
+  - statename: "\u5F85\u673A"
+    animClipName: idle
+    statusPriority: -1
+    type: 0
+    isWait: 1
+    stateChangeTime: 1
+    stateChangeForce: {x: 0, y: 0}
+    stateMoveForce:
+      value: -1
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    stateMoveForcer:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForce:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForcer:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    extraStiffness: 0
+    extraStiffnesstime: 0
+    imBanlance: 0
+    directionChangeForce: {x: 0, y: 0, z: 0}
+    addSpeedInStates:
+      buffs: []
+      time: 0
+      buffStackType: 0
+      buffOperationType: 0
+    isAddCharacterAttributes: 0
+    addEffectInStates: []
+    soundEffect:
+      starttime: 0
+      path: 
+      distance: 0
+    cameraEffect:
+      starttime: 0
+      changeType: 0
+      distance: 0
+    stateEventConfigs:
+    - e_StateEvent: 3
+      toStateEntityname: "\u5F00\u59CB\u8DD1\u6B65"
+    - e_StateEvent: 1
+      toStateEntityname: "\u653B\u51FB"
+    - e_StateEvent: 2
+      toStateEntityname: "\u8DF3"
+    - e_StateEvent: 0
+      toStateEntityname: "\u5F85\u673A"
+  - statename: "\u8DD1\u6B65"
+    animClipName: move_run_01
+    statusPriority: -1
+    type: 0
+    isWait: 0
+    stateChangeTime: 0
+    stateChangeForce: {x: 0, y: 0}
+    stateMoveForce:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    stateMoveForcer:
+      value: 1
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForce:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForcer:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    extraStiffness: 0
+    extraStiffnesstime: 0
+    imBanlance: 0
+    directionChangeForce: {x: 0, y: 0, z: 0}
+    addSpeedInStates:
+      buffs: []
+      time: 0
+      buffStackType: 0
+      buffOperationType: 0
+    isAddCharacterAttributes: 0
+    addEffectInStates: []
+    soundEffect:
+      starttime: 0
+      path: 
+      distance: 0
+    cameraEffect:
+      starttime: 0
+      changeType: 0
+      distance: 0
+    stateEventConfigs:
+    - e_StateEvent: 3
+      toStateEntityname: "\u8DD1\u6B65"
+    - e_StateEvent: 1
+      toStateEntityname: "\u653B\u51FB"
+    - e_StateEvent: 2
+      toStateEntityname: "\u8DF3"
+    - e_StateEvent: 4
+      toStateEntityname: "\u6025\u505C"
+  - statename: "\u653B\u51FB"
+    animClipName: atk_overhandslash
+    statusPriority: 1
+    type: 0
+    isWait: 0
+    stateChangeTime: 0.6
+    stateChangeForce: {x: 1, y: 1}
+    stateMoveForce:
+      value: -1
+      time: 2
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    stateMoveForcer:
+      value: -2
+      time: 2
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForce:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForcer:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    extraStiffness: 0
+    extraStiffnesstime: 0
+    imBanlance: 0
+    directionChangeForce: {x: 0, y: 0, z: 0}
+    addSpeedInStates:
+      buffs: []
+      time: 0
+      buffStackType: 0
+      buffOperationType: 0
+    isAddCharacterAttributes: 0
+    addEffectInStates:
+    - piont: 1
+      path: 
+      starttime: 0
+      endtime: 0
+      isOpenCheck: 1
+      effectType: 0
+      triggerstarttime: 0.8
+      triggernumber: 1
+      triggerendtime: 1
+      stateChangeOpponentForce:
+        value: {x: 0, y: 0, z: 10}
+        time: 0.1
+        buffCurveType: 0
+        buffStackType: 0
+        buffOperationType: 0
+      stateMoveOpponentForce:
+        value: {x: 0, y: 15, z: 5}
+        time: 0.5
+        buffCurveType: 1
+        buffStackType: 0
+        buffOperationType: 0
+      characterAttributes:
+        Health: 0
+    soundEffect:
+      starttime: 0
+      path: 
+      distance: 0
+    cameraEffect:
+      starttime: 0
+      changeType: 0
+      distance: 0
+    stateEventConfigs:
+    - e_StateEvent: 1
+      toStateEntityname: "\u653B\u51FB"
+    - e_StateEvent: 0
+      toStateEntityname: "\u5F85\u673A"
+    - e_StateEvent: 2
+      toStateEntityname: "\u8DF3"
+    - e_StateEvent: 3
+      toStateEntityname: "\u5F00\u59CB\u8DD1\u6B65"
+  - statename: "\u53D7\u51FB"
+    animClipName: hit_body_front
+    statusPriority: 2
+    type: 1
+    isWait: 0
+    stateChangeTime: 0
+    stateChangeForce: {x: 0, y: 0}
+    stateMoveForce:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    stateMoveForcer:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForce:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForcer:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    extraStiffness: 0
+    extraStiffnesstime: 0
+    imBanlance: 3
+    directionChangeForce: {x: 0, y: 0, z: 1}
+    addSpeedInStates:
+      buffs: []
+      time: 0
+      buffStackType: 0
+      buffOperationType: 0
+    isAddCharacterAttributes: 0
+    addEffectInStates: []
+    soundEffect:
+      starttime: 0
+      path: 
+      distance: 0
+    cameraEffect:
+      starttime: 0
+      changeType: 0
+      distance: 0
+    stateEventConfigs:
+    - e_StateEvent: 0
+      toStateEntityname: "\u5F85\u673A"
+  - statename: "\u8DF3"
+    animClipName: avoid_front
+    statusPriority: 1
+    type: 0
+    isWait: 0
+    stateChangeTime: 0.3
+    stateChangeForce: {x: 0, y: 0}
+    stateMoveForce:
+      value: -0.3
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    stateMoveForcer:
+      value: 1
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForce:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForcer:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    extraStiffness: 0
+    extraStiffnesstime: 0
+    imBanlance: 0
+    directionChangeForce: {x: 0, y: 0, z: 0}
+    addSpeedInStates:
+      buffs:
+      - bufftime: 0.1
+        buffvalue: {x: 0, y: 20, z: 0}
+        buffCurve: 4
+      - bufftime: 0.5
+        buffvalue: {x: 0, y: 0, z: 0}
+        buffCurve: 2
+      time: 0.7
+      buffStackType: 0
+      buffOperationType: 0
+    isAddCharacterAttributes: 0
+    addEffectInStates: []
+    soundEffect:
+      starttime: 0
+      path: 
+      distance: 0
+    cameraEffect:
+      starttime: 0
+      changeType: 0
+      distance: 0
+    stateEventConfigs:
+    - e_StateEvent: 0
+      toStateEntityname: "\u5F85\u673A"
+    - e_StateEvent: 3
+      toStateEntityname: "\u5F00\u59CB\u8DD1\u6B65"
+    - e_StateEvent: 1
+      toStateEntityname: "\u653B\u51FB"
+  - statename: "\u5F00\u59CB\u8DD1\u6B65"
+    animClipName: run_start_L
+    statusPriority: -1
+    type: 0
+    isWait: 0
+    stateChangeTime: 0
+    stateChangeForce: {x: 0, y: 0}
+    stateMoveForce:
+      value: -0.3
+      time: 0
+      buffStackType: 0
+      buffCurveType: 1
+      buffOperationType: 0
+    stateMoveForcer:
+      value: 1
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForce:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForcer:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    extraStiffness: 0
+    extraStiffnesstime: 0
+    imBanlance: 0
+    directionChangeForce: {x: 1, y: 0, z: 2}
+    addSpeedInStates:
+      buffs: []
+      time: 0
+      buffStackType: 0
+      buffOperationType: 0
+    isAddCharacterAttributes: 0
+    addEffectInStates: []
+    soundEffect:
+      starttime: 0
+      path: 
+      distance: 0
+    cameraEffect:
+      starttime: 0
+      changeType: 0
+      distance: 0
+    stateEventConfigs:
+    - e_StateEvent: 3
+      toStateEntityname: "\u8DD1\u6B65"
+    - e_StateEvent: 1
+      toStateEntityname: "\u653B\u51FB"
+    - e_StateEvent: 0
+      toStateEntityname: "\u5F85\u673A"
+    - e_StateEvent: 2
+      toStateEntityname: "\u8DF3"
+    - e_StateEvent: 4
+      toStateEntityname: idlenow
+  - statename: "\u6025\u505C"
+    animClipName: run_stop_L
+    statusPriority: 0
+    type: 0
+    isWait: 0
+    stateChangeTime: 0.5
+    stateChangeForce: {x: 0, y: 0}
+    stateMoveForce:
+      value: -1
+      time: 0
+      buffStackType: 0
+      buffCurveType: 1
+      buffOperationType: 0
+    stateMoveForcer:
+      value: -0.5
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForce:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForcer:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    extraStiffness: 0
+    extraStiffnesstime: 0
+    imBanlance: 0
+    directionChangeForce: {x: 1, y: 0, z: 2}
+    addSpeedInStates:
+      buffs: []
+      time: 0
+      buffStackType: 0
+      buffOperationType: 0
+    isAddCharacterAttributes: 0
+    addEffectInStates: []
+    soundEffect:
+      starttime: 0
+      path: 
+      distance: 0
+    cameraEffect:
+      starttime: 0
+      changeType: 0
+      distance: 0
+    stateEventConfigs:
+    - e_StateEvent: 3
+      toStateEntityname: "\u5F00\u59CB\u8DD1\u6B65"
+    - e_StateEvent: 1
+      toStateEntityname: "\u653B\u51FB"
+    - e_StateEvent: 0
+      toStateEntityname: "\u5F85\u673A"
+    - e_StateEvent: 2
+      toStateEntityname: "\u8DF3"
+  - statename: idlenow
+    animClipName: idlenow
+    statusPriority: 0
+    type: 0
+    isWait: 0
+    stateChangeTime: 1
+    stateChangeForce: {x: 0, y: 0}
+    stateMoveForce:
+      value: -1
+      time: 0
+      buffStackType: 0
+      buffCurveType: 1
+      buffOperationType: 0
+    stateMoveForcer:
+      value: -0.5
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForce:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForcer:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    extraStiffness: 0
+    extraStiffnesstime: 0
+    imBanlance: 0
+    directionChangeForce: {x: 1, y: 0, z: 2}
+    addSpeedInStates:
+      buffs: []
+      time: 0
+      buffStackType: 0
+      buffOperationType: 0
+    isAddCharacterAttributes: 0
+    addEffectInStates:
+    - piont: 0
+      path: 
+      starttime: 0
+      endtime: 0
+      isOpenCheck: 0
+      effectType: 0
+      triggerstarttime: 0
+      triggernumber: 0
+      triggerendtime: 0
+      stateChangeOpponentForce:
+        value: {x: 0, y: 0, z: 0}
+        time: 0
+        buffCurveType: 0
+        buffStackType: 0
+        buffOperationType: 0
+      stateMoveOpponentForce:
+        value: {x: 0, y: 0, z: 0}
+        time: 0
+        buffCurveType: 0
+        buffStackType: 0
+        buffOperationType: 0
+      characterAttributes:
+        Health: 0
+    soundEffect:
+      starttime: 0
+      path: 
+      distance: 0
+    cameraEffect:
+      starttime: 0
+      changeType: 0
+      distance: 0
+    stateEventConfigs:
+    - e_StateEvent: 3
+      toStateEntityname: "\u5F00\u59CB\u8DD1\u6B65"
+    - e_StateEvent: 1
+      toStateEntityname: "\u653B\u51FB"
+    - e_StateEvent: 0
+      toStateEntityname: "\u5F85\u673A"
+    - e_StateEvent: 2
+      toStateEntityname: "\u8DF3"
+  - statename: "\u653B\u51FB2"
+    animClipName: combo_01_2
+    statusPriority: 1
+    type: 0
+    isWait: 0
+    stateChangeTime: 0
+    stateChangeForce: {x: 0, y: 0}
+    stateMoveForce:
+      value: -1
+      time: 2
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    stateMoveForcer:
+      value: -1
+      time: 2
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForce:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    statePassiveMoveForcer:
+      value: 0
+      time: 0
+      buffStackType: 0
+      buffCurveType: 0
+      buffOperationType: 0
+    extraStiffness: 0
+    extraStiffnesstime: 0
+    imBanlance: 0
+    directionChangeForce: {x: 1, y: 0, z: 2}
+    addSpeedInStates:
+      buffs: []
+      time: 0
+      buffStackType: 0
+      buffOperationType: 0
+    isAddCharacterAttributes: 0
+    addEffectInStates: []
+    soundEffect:
+      starttime: 0
+      path: 
+      distance: 0
+    cameraEffect:
+      starttime: 0
+      changeType: 0
+      distance: 0
+    stateEventConfigs:
+    - e_StateEvent: 3
+      toStateEntityname: "\u5F00\u59CB\u8DD1\u6B65"
+    - e_StateEvent: 1
+      toStateEntityname: "\u653B\u51FB"
+    - e_StateEvent: 0
+      toStateEntityname: "\u5F85\u673A"
+    - e_StateEvent: 2
+      toStateEntityname: "\u8DF3"

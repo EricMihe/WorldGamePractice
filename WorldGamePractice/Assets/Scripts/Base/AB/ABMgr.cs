@@ -98,7 +98,6 @@ public class ABMgr : SingletonAutoMono<ABMgr>
     //    //得到加载出来的资源
     //    T obj = abDic[abName].LoadAsset<T>(resName);
     //    //如果是GameObject 因为GameObject 100%都是需要实例化的
-    //    //所以我们直接实例化
     //    if (obj is GameObject)
     //        return Instantiate(obj);
     //    else
@@ -153,7 +152,6 @@ public class ABMgr : SingletonAutoMono<ABMgr>
     //    //得到加载出来的资源
     //    Object obj = abDic[abName].LoadAsset(resName);
     //    //如果是GameObject 因为GameObject 100%都是需要实例化的
-    //    //所以我们直接实例化
     //    if (obj is GameObject)
     //        return Instantiate(obj);
     //    else
@@ -272,7 +270,6 @@ public class ABMgr : SingletonAutoMono<ABMgr>
         string[] strs = manifest.GetAllDependencies(abName);
         for (int i = 0; i < strs.Length; i++)
         {
-            //还没有加载过该AB包
             if (!abDic.ContainsKey(strs[i]))
             {
                 //同步加载
@@ -284,11 +281,9 @@ public class ABMgr : SingletonAutoMono<ABMgr>
                 //异步加载
                 else
                 {
-                    //一开始异步加载 就记录 如果此时的记录中的值 是null 那证明这个ab包正在被异步加载
                     abDic.Add(strs[i], null);
                     AssetBundleCreateRequest req = AssetBundle.LoadFromFileAsync(PathUrl + strs[i]);
                     yield return req;
-                    //异步加载结束后 再替换之前的null  这时 不为null 就证明加载结束了
                     abDic[strs[i]] = req.assetBundle;
                 }
             }
@@ -316,7 +311,6 @@ public class ABMgr : SingletonAutoMono<ABMgr>
                 abDic.Add(abName, null);
                 AssetBundleCreateRequest req = AssetBundle.LoadFromFileAsync(PathUrl + abName);
                 yield return req;
-                //异步加载结束后 再替换之前的null  这时 不为null 就证明加载结束了
                 abDic[abName] = req.assetBundle;
             }
         }

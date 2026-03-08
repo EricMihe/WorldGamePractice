@@ -1,27 +1,27 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 /// <summary>
-/// ÊÂ¼şÀàĞÍ Ã¶¾Ù
+/// äº‹ä»¶ç±»å‹ æšä¸¾
 /// </summary>
 public enum WorldEventType
 {
     /// <summary>
-    /// ¹ÖÎïËÀÍöÊÂ¼ş ¡ª¡ª ²ÎÊı£ºMonster
+    /// æ€ªç‰©æ­»äº¡äº‹ä»¶ â€”â€” å‚æ•°ï¼šMonster
     /// </summary>
     E_Monster_Dead,
     /// <summary>
-    /// Íæ¼Ò»ñÈ¡½±Àø ¡ª¡ª ²ÎÊı£ºint
+    /// ç©å®¶è·å–å¥–åŠ± â€”â€” å‚æ•°ï¼šint
     /// </summary>
     E_Player_GetReward,
     /// <summary>
-    /// ²âÊÔÓÃÊÂ¼ş ¡ª¡ª ²ÎÊı£ºÎŞ
+    /// æµ‹è¯•ç”¨äº‹ä»¶ â€”â€” å‚æ•°ï¼šæ— 
     /// </summary>
     E_Test,
     /// <summary>
-    /// ³¡¾°ÇĞ»»Ê±½ø¶È±ä»¯»ñÈ¡
+    /// åœºæ™¯åˆ‡æ¢æ—¶è¿›åº¦å˜åŒ–è·å–
     /// </summary>
     E_SceneLoadChange,
 
@@ -33,37 +33,37 @@ public enum WorldEventType
 
 
     /// <summary>
-    /// ÊäÈëÏµÍ³´¥·¢¹¥»÷1 ĞĞÎª
+    /// è¾“å…¥ç³»ç»Ÿè§¦å‘æ”»å‡»1 è¡Œä¸º
     /// </summary>
     E_Input_Attack1,
 
     /// <summary>
-    /// ÊäÈëÏµÍ³´¥·¢¼¼ÄÜ1 ĞĞÎª
+    /// è¾“å…¥ç³»ç»Ÿè§¦å‘æŠ€èƒ½1 è¡Œä¸º
     /// </summary>
     E_Input_Skill1,
     /// <summary>
-    /// ÊäÈëÏµÍ³´¥·¢¼¼ÄÜ2 ĞĞÎª
+    /// è¾“å…¥ç³»ç»Ÿè§¦å‘æŠ€èƒ½2 è¡Œä¸º
     /// </summary>
     E_Input_Skill2,
     /// <summary>
-    /// ÊäÈëÏµÍ³´¥·¢¼¼ÄÜ3 ĞĞÎª
+    /// è¾“å…¥ç³»ç»Ÿè§¦å‘æŠ€èƒ½3 è¡Œä¸º
     /// </summary>
     E_Input_Skill3,
 
     /// <summary>
-    /// Ë®Æ½ÈÈ¼ü -1~1µÄÊÂ¼ş¼àÌı
+    /// æ°´å¹³çƒ­é”® -1~1çš„äº‹ä»¶ç›‘å¬
     /// </summary>
     E_Input_Horizontal,
 
     /// <summary>
-    /// ÊúÖ±ÈÈ¼ü -1~1µÄÊÂ¼ş¼àÌı
+    /// ç«–ç›´çƒ­é”® -1~1çš„äº‹ä»¶ç›‘å¬
     /// </summary>
     E_Input_Vertical,
 }
 
 
 /// <summary>
-/// ÓÃÓÚ ÀïÊ½Ìæ»»Ô­Ôò ×°ÔØ ×ÓÀàµÄ¸¸Àà
+/// ç”¨äº é‡Œå¼æ›¿æ¢åŸåˆ™ è£…è½½ å­ç±»çš„çˆ¶ç±»
 /// </summary>
 public abstract class EventInfoBase
 {
@@ -78,12 +78,12 @@ public abstract class EventInfoBase
 }
 
 /// <summary>
-/// ÓÃÀ´°ü¹ü ¶ÔÓ¦¹Û²ìÕß º¯ÊıÎ¯ÍĞµÄ Àà
+/// ç”¨æ¥åŒ…è£¹ å¯¹åº”è§‚å¯Ÿè€… å‡½æ•°å§”æ‰˜çš„ ç±»
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public class EventInfo<T> : EventInfoBase
 {
-    //ÕæÕı¹Û²ìÕß ¶ÔÓ¦µÄ º¯ÊıĞÅÏ¢ ¼ÇÂ¼ÔÚÆäÖĞ
+    //çœŸæ­£è§‚å¯Ÿè€… å¯¹åº”çš„ å‡½æ•°ä¿¡æ¯ è®°å½•åœ¨å…¶ä¸­
     public UnityAction<T> actions;
 
     public EventInfo(UnityAction<T> action)
@@ -94,7 +94,7 @@ public class EventInfo<T> : EventInfoBase
 }
 
 /// <summary>
-/// Ö÷ÒªÓÃÀ´¼ÇÂ¼ÎŞ²ÎÎŞ·µ»ØÖµÎ¯ÍĞ
+/// ä¸»è¦ç”¨æ¥è®°å½•æ— å‚æ— è¿”å›å€¼å§”æ‰˜
 /// </summary>
 public class EventInfo : EventInfoBase
 {

@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,38 +7,38 @@ using UnityEditor;
 using UnityEngine;
 using static System.Security.Cryptography.ECCurve;
 
-// ÔöÖµËã·¨ÀàĞÍ
+// é”Ÿæ–¤æ‹·å€¼é”Ÿå§æ³•é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 [System.Serializable]
 public enum BuffOperationType
     {
     /// <summary>
-    /// ¼Ó·¨ÔöÖµ
+    /// é”Ÿæ¥å‡¤æ‹·é”Ÿæ–¤æ‹·å€¼
     /// </summary>
     Additive,
     /// <summary>
-    /// ³Ë·¨ÔöÖµ
+    /// é”Ÿå‰¿å‡¤æ‹·é”Ÿæ–¤æ‹·å€¼
     /// </summary>
     Multiplicative
 }
 
 [System.Serializable]
-// ±ä»¯Ğ§¹ûÀàĞÍ
+// é”Ÿæˆ’åŒ–æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 public enum BuffCurveType
     {
     /// <summary>
-    /// Ë²¼ä±ä»¯ºóË²¼äÏûÊ§
+    /// ç¬é”Ÿæ–¤æ‹·æµ îˆ¤æ‹·é”Ÿå‰¿è¯§æ‹·é”Ÿæ–¤æ‹·é”Ÿç»?
     /// </summary>
     Instant,
     /// <summary>
-    /// ÏßĞÔË¥¼õ
+    /// é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·è¡°é”Ÿæ–¤æ‹·
     /// </summary>
     LinearDecay,
     /// <summary>
-    /// ÏßĞÔÔö³¤ºóË²¼äÏûÊ§
+    /// é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·ç¬é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å¤±
     /// </summary>
     LinearGrowth,
     /// <summary>
-    /// »ºÈë»º³ö
+    /// é”Ÿæ–¤æ‹·é”Ÿè¯«ç¼“é”Ÿæ–¤æ‹·
     /// </summary>
     EaseInEaseOut,
 
@@ -53,32 +53,32 @@ public enum BuffCurveTypeDIY
     StantOut
 }
 
-// Ğ§¹ûµş¼ÓÀàĞÍ
+// æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 [System.Serializable]
 public enum BuffStackType
     {
     /// <summary>
-    /// Í¬ÀàĞÍÉÏÊÇµş¼Ó
+    /// åŒé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’ç¢‰æ‹·é”Ÿæ–¤æ‹·
     /// </summary>
     Basic,
     /// <summary>
-    /// Í¬ÀàĞÍÉÏÊÇ¸²¸Ç
+    /// åŒé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’é©æ‹·é”Ÿæ–¤æ‹·
     /// </summary>
     Override,
     /// <summary>
-    /// Í¬ÀàĞÍÉÏÊÇÈ¡×î´óÔöÖµ
+    /// åŒé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å–é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè¡—?
     /// </summary>
     MaxValue,
     /// <summary>
-    /// Í¬ÀàĞÍÉÏÊÇÈ¡×îĞ¡ÔöÖµ
+    /// åŒé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å–é”Ÿæ–¤æ‹·å°é”Ÿæ–¤æ‹·å€¼
     /// </summary>
     MinValue,
     ///  <summary>
-    /// Í¬ÀàĞÍÉÏÊÇÈ¡×î³¤Ê±¼ä
+    /// åŒé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å–é”Ÿç­‹é•¿æ—¶é”Ÿæ–¤æ‹·
     /// </summary>
     MaxDuration,
     ///  <summary>
-    /// Í¬ÀàĞÍÉÏÊÇÈ¡×î¶ÌÊ±¼ä
+    /// åŒé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å–é”Ÿæ–¤æ‹·é”Ÿç»æ†‹æ‹·é”Ÿ?
     /// </summary>
     MinDuration
 }
@@ -92,7 +92,7 @@ public struct DIYBuff<T>
 
 }
 
-// »ù´¡Öµ½Ó¿Ú
+// é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å€¼é”Ÿæ¥åŒ¡æ‹·
 public interface IBaseValue<T>: IPoolObject
 {
     T Value { get; set; }
@@ -102,7 +102,7 @@ public interface IBaseValue<T>: IPoolObject
     Action<T> ValueChange {  get; set; }
 }
 
-    // ¾ßÌåÖµÀàĞÍÊµÏÖ
+    // é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å€¼é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å®é”Ÿæ–¤æ‹·
     public class IntValue : IBaseValue<int>
 {
         private int originalValue;
@@ -178,7 +178,6 @@ public class Vector2Value : IBaseValue<Vector2>
     public void SetOriginalValue(Vector2 value) => originalValue = value;
 
 }
-
 public class Vector3Value : IBaseValue<Vector3>
 {
     private Vector3 originalValue;
@@ -203,7 +202,7 @@ public class Vector3Value : IBaseValue<Vector3>
     public void SetOriginalValue(Vector3 value) => originalValue = value;
 }
 
-// ¾ßÌåĞ§¹û
+// é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·
 public class BuffEffect<T> : IPoolObject
 {
     public string Id { get; set; }
@@ -257,7 +256,7 @@ public class BuffEffect<T> : IPoolObject
                 //float easeProgress = Mathf.Sin(progress * Mathf.PI * 0.5f); // Ease-in
                 //if (progress > 0.5f)
                 //    easeProgress = Mathf.Sin((1f - progress) * Mathf.PI * 0.5f); // Ease-out
-                float peak = Mathf.Sin(Mathf.PI * 0.25f); // ¡Ö0.7071
+                float peak = Mathf.Sin(Mathf.PI * 0.25f); // é”Ÿæ–¤æ‹·0.7071
                 float raw = progress <= 0.5f
                     ? Mathf.Sin(progress * Mathf.PI * 0.5f)
                     : Mathf.Sin((1f - progress) * Mathf.PI * 0.5f);
@@ -425,7 +424,7 @@ public class BuffEffect<T> : IPoolObject
     }
 }
 
-// ±äÁ¿¹ÜÀíÆ÷
+// é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 public class VariableManager<T>
 {
     private Dictionary<int, IBaseValue<T>> variables = new Dictionary<int, IBaseValue<T>>();
@@ -522,7 +521,7 @@ public class VariableManager<T>
         if (!effects.ContainsKey(variableId)) return;
         var varEffects = effects[variableId];
 
-        // ¸ù¾İ¶ÑµşÀàĞÍ´¦ÀíĞ§¹û
+        // é”Ÿæ–¤æ‹·é”Ÿæ·å †ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿé…µè¾¾æ‹·é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·
         switch (effect.StackType)
         {
             case BuffStackType.Override:
@@ -538,11 +537,11 @@ public class VariableManager<T>
                 break;
 
             case BuffStackType.MaxValue:
-                // ¼ì²éÊÇ·ñµ±Ç°Ğ§¹ûÖµ¸ü´ó
+                // é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ¬ é”Ÿè§’é¶Ñæ‹·é”Ÿè¡—ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿ?
                 var maxEffect = varEffects.Find(e => e.StackType == BuffStackType.MaxValue);
                 if (maxEffect != null && CompareValues(effect.Amount, maxEffect.Amount) <= 0)
                     return;
-                // ²»Ó¦ÓÃĞÂĞ§¹û
+                // é”Ÿæ–¤æ‹·åº”é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·
                 var removeEfffectsMaxValue = varEffects.Where(e => e.StackType == BuffStackType.MaxValue).ToList();
                 if (removeEfffectsMaxValue.Count > 0)
                 {
@@ -555,10 +554,10 @@ public class VariableManager<T>
                 break;
 
             case BuffStackType.MinValue:
-                // ¼ì²éÊÇ·ñµ±Ç°Ğ§¹ûÖµ¸üĞ¡
+                // é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ¬ é”Ÿè§’é¶Ñæ‹·é”Ÿè¡—ç¢‰æ‹·é”Ÿå«?
                 var minEffect = varEffects.Find(e => e.StackType == BuffStackType.MinValue);
                 if (minEffect != null && CompareValues(effect.Amount, minEffect.Amount) >= 0)
-                    return; // ²»Ó¦ÓÃĞÂĞ§¹û
+                    return; // é”Ÿæ–¤æ‹·åº”é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·
                 var removeEfffectsMinValue = varEffects.Where(e => e.StackType == BuffStackType.MinValue).ToList();
                 if (removeEfffectsMinValue.Count > 0)
                 {
@@ -571,10 +570,10 @@ public class VariableManager<T>
                 break;
 
             case BuffStackType.MaxDuration:
-                // ¼ì²éÊÇ·ñµ±Ç°Ğ§¹û³ÖĞøÊ±¼ä¸ü³¤
+                // é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ¬ é”Ÿè§’é¶Ñæ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿç»æ†‹æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
                 var maxDurEffect = varEffects.Find(e => e.StackType == BuffStackType.MaxDuration);
                 if (maxDurEffect != null && effect.Duration <= maxDurEffect.Duration)
-                    return; // ²»Ó¦ÓÃĞÂĞ§¹û
+                    return; // é”Ÿæ–¤æ‹·åº”é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·
                 var removeEfffectsMaxDuration = varEffects.Where(e => e.StackType == BuffStackType.MaxDuration).ToList();
                 if (removeEfffectsMaxDuration.Count > 0)
                 {
@@ -588,10 +587,10 @@ public class VariableManager<T>
                 break;
 
             case BuffStackType.MinDuration:
-                // ¼ì²éÊÇ·ñµ±Ç°Ğ§¹û³ÖĞøÊ±¼ä¸ü¶Ì
+                // é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ¬ é”Ÿè§’é¶Ñæ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿç»æ†‹æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
                 var minDurEffect = varEffects.Find(e => e.StackType == BuffStackType.MinDuration);
                 if (minDurEffect != null && effect.Duration >= minDurEffect.Duration)
-                    return; // ²»Ó¦ÓÃĞÂĞ§¹û
+                    return; // é”Ÿæ–¤æ‹·åº”é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·
                 var removeEfffectsMinDuration = varEffects.Where(e => e.StackType == BuffStackType.MinDuration).ToList();
                 if (removeEfffectsMinDuration.Count > 0)
                 {
@@ -631,7 +630,7 @@ public class VariableManager<T>
         float[] items= null;
         if (!effects.ContainsKey(variableId))
         {
-            Debug.Log("Î´ÕÒµ½¶ÔÓ¦Buff");
+            Debug.Log("æœªé”Ÿæ­ç¢‰æ‹·é”Ÿæ–¤æ‹·åº”Buff");
             return null;
         }
 
@@ -643,7 +642,7 @@ public class VariableManager<T>
             for (int i = 0; i < effectItems.Count; i++)
             {
                 items[i]= effectItems[i].GetRemainingtime ();
-                Debug.Log($"µÚ{i}¸ö:{items[i]}");
+                Debug.Log($"é”Ÿæ–¤æ‹·{i}é”Ÿæ–¤æ‹·:{items[i]}");
             }
         }
         return items;
@@ -717,7 +716,7 @@ public class VariableManager<T>
             lastvariables[variableId]= finalValue; 
         }
 
-        // ÇåÀí¹ıÆÚĞ§¹û
+        // é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·
         foreach (var expiredKey in expiredEffects)
         {
             var parts = expiredKey.Split(':');
@@ -854,7 +853,7 @@ public class VariableManager<T>
     }
 }
 
-// ÏµÍ³¹ÜÀíÆ÷
+// ç³»ç»Ÿé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 public class BuffMgr : SingletonAutoMono<BuffMgr>
 {
     private int intvalueKey = 0;
@@ -903,7 +902,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
             vector3Manager.RegisterVariable(vector3valueKey, (Vector3)(object)initialValue, action);
             return vector3valueKey++;
         }
-        else Debug.Log("ÎŞĞ§ÀàĞÍ");
+        else Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
         return -1;
     }
 
@@ -919,6 +918,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
             floatManager.UnregisterVariable(id);
             if (coroutineFloat.ContainsKey(id) && coroutineFloat[id] != null) StopCoroutine(coroutineFloat[id]);
         }
+        
         else if (typeof(T) == typeof(Vector2))
         {
             vector2Manager.UnregisterVariable(id);
@@ -930,7 +930,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
             vector3Manager.UnregisterVariable(id);
             if (coroutineVector3.ContainsKey (id)&&coroutineVector3[id] != null) StopCoroutine(coroutineVector3[id]);
         }
-        else Debug.Log("ÎŞĞ§ÀàĞÍ");
+        else Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
     }
 
     public void ReMoveAllBuff<T>(int id)
@@ -952,7 +952,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
         {
             vector3Manager.ReMoveAllBuff(id);
         }
-        else Debug.Log("ÎŞĞ§ÀàĞÍ");
+        else Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
     }
 
     public T GetValue<T>(int id)
@@ -976,7 +976,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
         }
         else
         {
-            Debug.Log("ÎŞĞ§ÀàĞÍ");
+            Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
             return default(T);
         }
     }
@@ -1002,7 +1002,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
         }
         else
         {
-            Debug.Log("ÎŞĞ§ÀàĞÍ");
+            Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
             return default(T);
         }
     }
@@ -1028,21 +1028,21 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
         {
             vector3Manager.UpdateVariableValue(id, (Vector3)(object)newValue);
         }
-        else Debug.Log("ÎŞĞ§ÀàĞÍ");
+        else Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
         
     }
     /// <summary>
-    /// Ê©¼ÓÔöÖµĞ§¹û
+    /// æ–½é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å€¼æ•ˆé”Ÿæ–¤æ‹·
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    /// <param name="amount">×î´óÔöÖµ</param>
-    /// <param name="duration">ÔöÖµÊ±¼ä</param>
-    /// <param name="variableId">¶ÔÄÄ¸ö±äÁ¿ÔöÖµ</param>
-    /// <param name="curveType">±ä»¯ÀàĞÍ</param>
-    /// <param name="stackType">µş¼ÓÀàĞÍ</param>
-    /// <param name="opType">ÔöÖµËã·¨</param>
-    /// <param name="effectId">Ğ§¹ûID</param>
-    /// <param name="onComplete">Íê³É»Øµ÷</param>
+    /// <param name="amount">é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè¡—?/param>
+    /// <param name="duration">é”Ÿæ–¤æ‹·å€¼æ—¶é”Ÿæ–¤æ‹·</param>
+    /// <param name="variableId">é”Ÿæ–¤æ‹·é”Ÿä¾¥é©æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å€¼</param>
+    /// <param name="curveType">é”Ÿæˆ’åŒ–é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·</param>
+    /// <param name="stackType">é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·</param>
+    /// <param name="opType">é”Ÿæ–¤æ‹·å€¼é”Ÿå§æ³•</param>
+    /// <param name="effectId">æ•ˆé”Ÿæ–¤æ‹·ID</param>
+    /// <param name="onComplete">é”Ÿæ–¤æ‹·è‹«æ°é”Ÿ?/param>
     public void AddBuff<T>(int variableId, T amount, float duration,  
                             BuffCurveType curveType = BuffCurveType.Instant,
                             BuffStackType stackType = BuffStackType.Basic, 
@@ -1068,7 +1068,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
         {
             vector3Manager.AddBuff(variableId, (BuffEffect<Vector3>)Convert.ChangeType(effect, typeof(BuffEffect<Vector3>)));
         }
-        else Debug.Log("ÎŞĞ§ÀàĞÍ");
+        else Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
     }
 
     public void ApplyBuff<T>(int variableId, T amount, float duration,
@@ -1120,9 +1120,42 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
             }
             else coroutineVector3[variableId] = StartCoroutine(DoUpdateVector3Value(variableId, duration));
         }
-        else Debug.Log("ÎŞĞ§ÀàĞÍ");
-   
+        else Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
+
     }
+
+    //private void Start()
+    //{
+    //    StartCoroutine(DoUpdateValue());
+    //}
+
+    //IEnumerator DoUpdateValue()
+    //{
+    //    float currenttime;
+    //    while (true)
+    //    {
+    //        currenttime = Time.time;
+    //        if(coroutineInt_.Count > 0)
+    //        {
+
+    //        }
+    //        yield return null;
+    //    }
+    //}
+
+    //Queue<int> coroutineInt_ = new Queue<int>();
+    //Queue<int> coroutineFloat_ = new Queue<int>();
+    //Queue<int> coroutineVector2_ = new Queue<int>();
+    //Queue<int> coroutineVector3_ = new Queue<int>();
+
+    //void DoUpdateIntValue_(int variableId, float updatetime)
+    //{
+    //    if (Time.time - currenttime < updatetime)
+    //    {
+
+    //    }
+    //}
+
 
     IEnumerator DoUpdateIntValue(int variableId,float updatetime)
     {
@@ -1182,7 +1215,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
             {
                 buff.Add(item);
             }
-            else Debug.Log($"Ê±¼ä²»ÄÜÎª¸º:{item}");
+            else Debug.Log($"æ—¶é”Ÿæˆ’ä¸é”Ÿæ–¤æ‹·ä¸ºé”Ÿæ–¤æ‹·:{item}");
        
         }
         for (int i = 0; i < buff.Count; i++)
@@ -1231,7 +1264,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
                 }
                 else
                 {
-                    Debug.Log("ÎŞĞ§ÀàĞÍ");
+                    Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
                 }
             });
         }
@@ -1253,7 +1286,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
         {
             vector3Manager.AddBuff(variableId, (BuffEffect<Vector3>)Convert.ChangeType(effect, typeof(BuffEffect<Vector3>)));
         }
-        else Debug.Log("ÎŞĞ§ÀàĞÍ");
+        else Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
     }
 
 
@@ -1272,7 +1305,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
             {
                 buff.Add(item);
             }
-            else Debug.Log($"Ê±¼ä²»ÄÜÎª¸º:{item}");
+            else Debug.Log($"æ—¶é”Ÿæˆ’ä¸é”Ÿæ–¤æ‹·ä¸ºé”Ÿæ–¤æ‹·:{item}");
 
         }
 
@@ -1324,7 +1357,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
                 }
                 else
                 {
-                    Debug.Log("ÎŞĞ§ÀàĞÍ");
+                    Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
                 }
             });
         }
@@ -1370,7 +1403,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
             }
             else coroutineVector3[variableId] = StartCoroutine(DoUpdateVector3Value(variableId, duration));
         }
-        else Debug.Log("ÎŞĞ§ÀàĞÍ");
+        else Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
     }
 
     public void RemoveBuff<T>(int variableId, string effectId)
@@ -1392,7 +1425,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
         {
             vector3Manager.RemoveBuff(variableId, effectId);
         }
-        else Debug.Log("ÎŞĞ§ÀàĞÍ");
+        else Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
     }
     public List<BuffEffect<T>> GetBuff<T>(int variableId, string effectId)
     {
@@ -1415,7 +1448,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
         }
         else
         {
-            Debug.Log("ÎŞĞ§ÀàĞÍ");
+            Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
             return null;
         }
 
@@ -1443,7 +1476,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
         }
         else
         {
-            Debug.Log("ÎŞĞ§ÀàĞÍ");
+            Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
             return null;
         }
     }
@@ -1452,7 +1485,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
 
 
     /// <summary>
-    /// ½«ÔËĞĞÖĞµÄËùÓĞÍ¬ÀàĞÍÍ¬ÃûÔöÖµĞ§¹ûÖØÖÃ
+    /// é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå«ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·åŒé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·åŒé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å€¼æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
     /// </summary>
     /// <param name="variableId"></param>
     /// <param name="effectId"></param>
@@ -1475,7 +1508,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
         {
             vector3Manager.ReSetBuff(variableId, effectId);
         }
-        else Debug.Log("ÎŞĞ§ÀàĞÍ");
+        else Debug.Log("é”Ÿæ–¤æ‹·æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·");
     }
 
     public void CreateAndApplyBuff<T>(Action<T> valueChange, T amount, float duration,
@@ -1616,7 +1649,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
     //    return floatManager.GetBuff(variableId, effectId);
     //}
     ///// <summary>
-    ///// ½«ÔËĞĞÖĞµÄËùÓĞfloatÀàĞÍÍ¬ÃûÔöÖµĞ§¹ûÖØÖÃ
+    ///// é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå«ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·floaté”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·åŒé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å€¼æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
     ///// </summary>
     ///// <param name="variableId"></param>
     ///// <param name="effectId"></param>
@@ -1681,7 +1714,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
     //    return vector2Manager.GetBuff(variableId, effectId);
     //}
     ///// <summary>
-    ///// ½«ÔËĞĞÖĞµÄËùÓĞVector2Í¬ÃûÔöÖµĞ§¹ûÖØÖÃ
+    ///// é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå«ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·Vector2åŒé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å€¼æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
     ///// </summary>
     ///// <param name="variableId"></param>
     ///// <param name="effectId"></param>
@@ -1746,7 +1779,7 @@ public class BuffMgr : SingletonAutoMono<BuffMgr>
     //}
 
     ///// <summary>
-    ///// ½«ÔËĞĞÖĞµÄËùÓĞVector3Í¬ÃûÔöÖµĞ§¹ûÖØÖÃ
+    ///// é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå«ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·Vector3åŒé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å€¼æ•ˆé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
     ///// </summary>
     ///// <param name="variableId"></param>
     ///// <param name="effectId"></param>
